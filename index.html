@@ -7,6 +7,14 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Theme Toggle -->
+  <div class="theme-toggle-wrapper">
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+      <img src="assets/icons/light-mode.png" alt="Light mode" class="theme-icon light-icon">
+      <img src="assets/icons/dark-mode.png" alt="Dark mode" class="theme-icon dark-icon">
+    </button>
+  </div>
+
   <div class="page-wrapper">
     <div class="contact-card">
       <div class="form-header">
@@ -35,7 +43,11 @@
               Name
               <span class="required">*</span>
             </label>
-            <input class="input" id="name" name="name" type="text" placeholder="Name" required>
+            <div class="input-wrapper">
+              <input class="input" id="name" name="name" type="text" placeholder="Name" autocomplete="name" required>
+              <span class="success-icon">✓</span>
+            </div>
+            <span class="error-text" id="name-error"></span>
           </div>
         </div>
 
@@ -45,7 +57,11 @@
               Email
               <span class="required">*</span>
             </label>
-            <input class="input" id="email" name="email" type="email" placeholder="Email" required>
+            <div class="input-wrapper">
+              <input class="input" id="email" name="email" type="email" placeholder="Email" autocomplete="email" required>
+              <span class="success-icon">✓</span>
+            </div>
+            <span class="error-text" id="email-error"></span>
           </div>
 
           <div class="field">
@@ -54,15 +70,14 @@
               <span style="font-weight:400;color:var(--muted)">(optional)</span>
             </label>
             <div class="phone-group">
-              <select id="countryCode" name="countryCode">
-                <option value="+41">+41</option>
-                <option value="+42" selected>+42</option>
-                <option value="+43">+43</option>
-                <option value="+44">+44</option>
-                <option value="+49">+49</option>
+              <select id="countryCode" name="countryCode" autocomplete="tel-country-code">
                 <option value="+1">+1</option>
+                <option value="+41">+41</option>
+                <option value="+43">+43</option>
+                <option value="+44" selected>+44</option>
+                <option value="+49">+49</option>
               </select>
-              <input class="input" id="phone" name="phone" type="tel" placeholder="Phone">
+              <input class="input" id="phone" name="phone" type="tel" placeholder="Phone" autocomplete="tel-national">
             </div>
           </div>
         </div>
@@ -71,8 +86,13 @@
           <label for="message">
             Message
             <span class="required">*</span>
+            <span class="char-counter" id="message-counter">0 / 1000</span>
           </label>
-          <textarea id="message" name="message" placeholder="Message" required></textarea>
+          <div class="input-wrapper">
+            <textarea id="message" name="message" placeholder="Message" maxlength="1000" required></textarea>
+            <span class="success-icon textarea-success">✓</span>
+          </div>
+          <span class="error-text" id="message-error"></span>
         </div>
 
         <div class="attachments-wrapper">
@@ -81,11 +101,12 @@
           <div id="dropzone" class="dropzone">
             <div class="dropzone-title">Choose file or drag here</div>
             <div class="dropzone-subtext">
-              Supported Format: JPG, JPEG, PNG, GIF, PDF
+              Supported Format: JPG, JPEG, PNG, GIF, PDF (Max 5MB per file, up to 5 files)
             </div>
             <button type="button" class="btn-browse">Browse file</button>
             <div id="fileList" class="dropzone-files"></div>
           </div>
+          <span class="error-text" id="file-error"></span>
 
           <input
             id="fileInput"
@@ -98,7 +119,10 @@
         </div>
 
         <div class="form-footer">
-          <button class="btn-submit" type="submit">Submit</button>
+          <button class="btn-submit" type="submit">
+            <span class="btn-text">Submit</span>
+            <span class="btn-loader"></span>
+          </button>
 
           <label class="consent">
             <input type="checkbox" id="consent" required>
@@ -108,7 +132,25 @@
             </span>
           </label>
         </div>
+
+        <div id="formMessage" class="form-message"></div>
       </form>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-icon">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="22" fill="#10B981" opacity="0.1"/>
+          <path d="M32 18L20 30L14 24" stroke="#10B981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 class="modal-title" id="modalTitle">Thank You!</h2>
+      <p class="modal-message" id="modalMessage">Your message has been sent successfully.</p>
+      <button class="modal-close-btn" id="modalCloseBtn">Close</button>
     </div>
   </div>
 
