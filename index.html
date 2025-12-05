@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Our Team</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="contact-card">
+      <div class="form-header">
+        <h1 class="form-title">Contact Our Team</h1>
+        <p class="form-subtitle">We'd Love to Hear From You</p>
+      </div>
+
+      <form id="contactForm" action="https://formspree.io/f/mdkyawdk" method="POST" enctype="multipart/form-data">
+        <div class="form-row">
+          <div class="field">
+            <label for="inquiry">
+              <span>Inquiry Type</span>
+              <span class="required">*</span>
+            </label>
+            <select id="inquiry" name="inquiry" required>
+              <option value="" selected disabled>Please select</option>
+              <option value="general">General inquiry</option>
+              <option value="project">Project request</option>
+              <option value="support">Technical support</option>
+              <option value="partnership">Partnership</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="name">
+              Name
+              <span class="required">*</span>
+            </label>
+            <input class="input" id="name" name="name" type="text" placeholder="Name" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="email">
+              Email
+              <span class="required">*</span>
+            </label>
+            <input class="input" id="email" name="email" type="email" placeholder="Email" required>
+          </div>
+
+          <div class="field">
+            <label for="phone">
+              Phone
+              <span style="font-weight:400;color:var(--muted)">(optional)</span>
+            </label>
+            <div class="phone-group">
+              <select id="countryCode" name="countryCode">
+                <option value="+41">+41</option>
+                <option value="+42" selected>+42</option>
+                <option value="+43">+43</option>
+                <option value="+44">+44</option>
+                <option value="+49">+49</option>
+                <option value="+1">+1</option>
+              </select>
+              <input class="input" id="phone" name="phone" type="tel" placeholder="Phone">
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="message">
+            Message
+            <span class="required">*</span>
+          </label>
+          <textarea id="message" name="message" placeholder="Message" required></textarea>
+        </div>
+
+        <div class="attachments-wrapper">
+          <label>Attachments</label>
+
+          <div id="dropzone" class="dropzone">
+            <div class="dropzone-title">Choose file or drag here</div>
+            <div class="dropzone-subtext">
+              Supported Format: JPG, JPEG, PNG, GIF, PDF
+            </div>
+            <button type="button" class="btn-browse">Browse file</button>
+            <div id="fileList" class="dropzone-files"></div>
+          </div>
+
+          <input
+            id="fileInput"
+            class="hidden-input"
+            type="file"
+            name="attachments"
+            accept=".jpg,.jpeg,.png,.gif,.pdf"
+            multiple
+          >
+        </div>
+
+        <div class="form-footer">
+          <button class="btn-submit" type="submit">Submit</button>
+
+          <label class="consent">
+            <input type="checkbox" id="consent" required>
+            <span>
+              I have reviewed and agree to EXAView's
+              <a href="https://youtu.be/xvFZjo5PgG0?si=OspOuBr9IKyRSVBG" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+            </span>
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
